@@ -1032,9 +1032,6 @@
 /* label for the menu item that lets you remove a website from the tracking protection whitelist */
 "Menu.TrackingProtectionWhitelistRemove.Title" = "Käytä tällä sivustolla";
 
-/* The title for the option to view the What's new page. */
-"Menu.WhatsNew.Title" = "Mitä uutta";
-
 /* Accessibility label for Mobile Device image in remote tabs list */
 "mobile device" = "mobiililaite";
 
@@ -1208,7 +1205,7 @@
 /* Accessibility Label for the tab toolbar Search button
    Navigation title for search settings.
    Open search section of settings */
-"Search" = "Haku";
+"Search" = "Hae";
 
 /* The text shown in the URL bar on about:home */
 "Search or enter address" = "Hae tai kirjoita osoite";
@@ -1411,9 +1408,6 @@
 
 /* Option choice in display theme settings for light theme */
 "Settings.DisplayTheme.OptionLight" = "Vaalea";
-
-/* Display (theme) settings footer describing how the brightness slider works. */
-"Settings.DisplayTheme.SectionFooter" = "Teema muuttuu automaattisesti näytön kirkkauden perusteella. Voit asettaa kirkkauskynnyksen, jossa teema muuttuu. Ympyrä ilmaisee näytön nykyistä kirkkautta.";
 
 /* Switch mode settings section title */
 "Settings.DisplayTheme.SwitchMode.SectionHeader" = "Vaihda tilaa";

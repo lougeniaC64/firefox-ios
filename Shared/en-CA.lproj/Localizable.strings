@@ -46,9 +46,6 @@
 /* On the Firefox homepage in the Jump Back In section, if a Tab group item - a collection of grouped tabs from a related search - exists underneath the search term for the tab group, there will be a subtitle with a number for how many tabs are in that group. The placeholder is for a number. It will read 'Tabs: 5' or similar. */
 "ActivityStream.JumpBackIn.TabGroup.SiteCount" = "Tabs: %d";
 
-/* On the Firefox homepage in the Jump Back In section, if a Tab group item - a collection of grouped tabs from a related search - exists, the Tab Group item title will be 'Your search for \"video games\"'. The %@ sign is a placeholder for the actual search the user did. */
-"ActivityStream.JumpBackIn.TabGroup.Title" = "Your search for \"%@\"";
-
 /* A string used to signify the start of the Recently Saved section in Home Screen. */
 "ActivityStream.Library.Title" = "Recently Saved";
 
@@ -296,9 +293,6 @@
 /* Contextual hints are little popups that appear for the users informing them of new features. This one introduces search bar placement to new users. It tells them that by default, the search bar will appear at the bottom of the device. */
 "ContextualHint.SearchBarPlacement.NewUsers" = "To make entering info easier, the toolbar is now at the bottom by default.";
 
-/* Contextual hints are little popups that appear for the users informing them of new features. This one talks about the more personalized home feature. */
-"ContextualHints.Homepage.PersonalizedHome" = "Your personalized Firefox homepage now makes it easier to pick up where you left off. Find your recent tabs, bookmarks, and search results.";
-
 /* Contextual hints are little popups that appear for the users informing them of new features. This one is a call to action for the popup describing search bar placement. It indicates a user can navigate to the settings page that allows them to customize the placement of the search bar. */
 "ContextualHints.SearchBarPlacement.CallToAction" = "Toolbar Settings";
 
@@ -468,6 +462,9 @@
 
 /* The title for the Sponsored Content context menu action for sponsored tiles in the Firefox home page shortcuts section. Clicking this brings the users to a support page where users can learn more about Sponsored content and how it works. */
 "FirefoxHomepage.ContextualMenu.SponsoredContent.v101" = "Our Sponsors & Your Privacy";
+
+/* Button title shown for tab pickup on the Firefox homepage in the Jump Back In section. */
+"FirefoxHomepage.JumpBackIn.TabPickup.ShowAll.ButtonTitle.v104" = "See all synced tabs";
 
 /* If a user is signed in, and a sync has been performed to collect their recent tabs from other signed in devices, their most recent tab from another device can now appear in the Jump Back In section. This label specifically points out which cell inside the Jump Back In section shows that synced tab. */
 "FirefoxHomepage.JumpBackIn.TabPickup.v104" = "Tab pickup";
@@ -1206,9 +1203,6 @@
 /* label for the menu item that lets you remove a website from the tracking protection whitelist */
 "Menu.TrackingProtectionWhitelistRemove.Title" = "Enable for this site";
 
-/* The title for the option to view the What's new page. */
-"Menu.WhatsNew.Title" = "What’s New";
-
 /* Accessibility label for Mobile Device image in remote tabs list */
 "mobile device" = "mobile device";
 
@@ -1633,9 +1627,6 @@
 
 /* Option choice in display theme settings for light theme */
 "Settings.DisplayTheme.OptionLight" = "Light";
-
-/* Display (theme) settings footer describing how the brightness slider works. */
-"Settings.DisplayTheme.SectionFooter" = "The theme will automatically change based on your display brightness. You can set the threshold where the theme changes. The circle indicates your display’s current brightness.";
 
 /* Switch mode settings section title */
 "Settings.DisplayTheme.SwitchMode.SectionHeader" = "Switch Mode";

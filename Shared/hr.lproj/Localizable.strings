@@ -46,9 +46,6 @@
 /* On the Firefox homepage in the Jump Back In section, if a Tab group item - a collection of grouped tabs from a related search - exists underneath the search term for the tab group, there will be a subtitle with a number for how many tabs are in that group. The placeholder is for a number. It will read 'Tabs: 5' or similar. */
 "ActivityStream.JumpBackIn.TabGroup.SiteCount" = "Kartica: %d";
 
-/* On the Firefox homepage in the Jump Back In section, if a Tab group item - a collection of grouped tabs from a related search - exists, the Tab Group item title will be 'Your search for \"video games\"'. The %@ sign is a placeholder for the actual search the user did. */
-"ActivityStream.JumpBackIn.TabGroup.Title" = "Tvoja pretraga za \"%@\"";
-
 /* A string used to signify the start of the Recently Saved section in Home Screen. */
 "ActivityStream.Library.Title" = "Nedavno spremljeno";
 
@@ -295,9 +292,6 @@
 
 /* Contextual hints are little popups that appear for the users informing them of new features. This one introduces search bar placement to new users. It tells them that by default, the search bar will appear at the bottom of the device. */
 "ContextualHint.SearchBarPlacement.NewUsers" = "Za jednostavniji unos podataka, alatna traka se sada nalazi na dnu.";
-
-/* Contextual hints are little popups that appear for the users informing them of new features. This one talks about the more personalized home feature. */
-"ContextualHints.Homepage.PersonalizedHome" = "Tvoja personalizirana Firefoxova početna stranica sada ti olakšava da nastaviš pretraživati. Pronađi svoje nedavne kartice, zabilješke i rezultate pretraživanja.";
 
 /* Contextual hints are little popups that appear for the users informing them of new features. This one is a call to action for the popup describing search bar placement. It indicates a user can navigate to the settings page that allows them to customize the placement of the search bar. */
 "ContextualHints.SearchBarPlacement.CallToAction" = "Postavke alatne trake";
@@ -1191,9 +1185,6 @@
 /* label for the menu item that lets you remove a website from the tracking protection whitelist */
 "Menu.TrackingProtectionWhitelistRemove.Title" = "Aktiviraj za ovu web lokaciju";
 
-/* The title for the option to view the What's new page. */
-"Menu.WhatsNew.Title" = "Što je novo";
-
 /* Accessibility label for Mobile Device image in remote tabs list */
 "mobile device" = "mobilni uređaj";
 
@@ -1597,9 +1588,6 @@
 
 /* Option choice in display theme settings for light theme */
 "Settings.DisplayTheme.OptionLight" = "Svijetlo";
-
-/* Display (theme) settings footer describing how the brightness slider works. */
-"Settings.DisplayTheme.SectionFooter" = "Motiv se automatski mijenja na temelju svjetline ekrana. Možeš postaviti prag, gdje se motiv mijenja. Krug označava trenutačnu svjetlinu ekrana.";
 
 /* Switch mode settings section title */
 "Settings.DisplayTheme.SwitchMode.SectionHeader" = "Prebacivanje modusa";

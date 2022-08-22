@@ -46,9 +46,6 @@
 /* On the Firefox homepage in the Jump Back In section, if a Tab group item - a collection of grouped tabs from a related search - exists underneath the search term for the tab group, there will be a subtitle with a number for how many tabs are in that group. The placeholder is for a number. It will read 'Tabs: 5' or similar. */
 "ActivityStream.JumpBackIn.TabGroup.SiteCount" = "Ivinelloù: %d";
 
-/* On the Firefox homepage in the Jump Back In section, if a Tab group item - a collection of grouped tabs from a related search - exists, the Tab Group item title will be 'Your search for \"video games\"'. The %@ sign is a placeholder for the actual search the user did. */
-"ActivityStream.JumpBackIn.TabGroup.Title" = "Ho klask evit \"%@\"";
-
 /* A string used to signify the start of the Recently Saved section in Home Screen. */
 "ActivityStream.Library.Title" = "Enrollet da ziwezhañ";
 
@@ -296,9 +293,6 @@
 /* Contextual hints are little popups that appear for the users informing them of new features. This one introduces search bar placement to new users. It tells them that by default, the search bar will appear at the bottom of the device. */
 "ContextualHint.SearchBarPlacement.NewUsers" = "Evit ma vefe aesoc’h da skrivañ titouroù ez eo bet lakaet ar varrenn-ostilhoù en traoù.";
 
-/* Contextual hints are little popups that appear for the users informing them of new features. This one talks about the more personalized home feature. */
-"ContextualHints.Homepage.PersonalizedHome" = "Gant ho pajenn Firefox personelaet eo aesoc’h da adstagañ lec’h m’ho peus paouezet. Klaskit e-touez hoc’h ivinelloù nevez, sinedoù ha disoc’hoù enklask.";
-
 /* Contextual hints are little popups that appear for the users informing them of new features. This one is a call to action for the popup describing search bar placement. It indicates a user can navigate to the settings page that allows them to customize the placement of the search bar. */
 "ContextualHints.SearchBarPlacement.CallToAction" = "Arventennoù ar varrenn-ostilhoù";
 
@@ -307,6 +301,9 @@
 
 /* Contextual hints are little popups that appear for the users informing them of new features. This one is the call to action for the inactive tabs contextual popup. */
 "ContextualHints.TabTray.InactiveTabs.CallToAction" = "Diweredekaat en arventennoù";
+
+/* Accessibility label for action denoting closing contextual hint. */
+"ContextualHintsCloseButtonAccessibility.v105" = "Serriñ";
 
 /* Accessibility message e.g. spoken by VoiceOver after adding current webpage to the Reading List failed. */
 "Could not add page to Reading list" = "N’haller ket ouzhpennañ ar bajenn d’ar roll lennadurioù";
@@ -471,6 +468,9 @@
 
 /* Button title shown for tab pickup on the Firefox homepage in the Jump Back In section. */
 "FirefoxHomepage.JumpBackIn.TabPickup.ShowAll.ButtonTitle.v104" = "Gwelout an holl ivinelloù goubredet";
+
+/* If a user is signed in, and a sync has been performed to collect their recent tabs from other signed in devices, their most recent tab from another device can now appear in the Jump Back In section. This label specifically points out which cell inside the Jump Back In section shows that synced tab. */
+"FirefoxHomepage.JumpBackIn.TabPickup.v104" = "Adtapout ivinelloù";
 
 /* This string will show under the description on pocket story, indicating that the story is sponsored. */
 "FirefoxHomepage.Pocket.Sponsored.v103" = "Paeroniet";
@@ -1206,9 +1206,6 @@
 /* label for the menu item that lets you remove a website from the tracking protection whitelist */
 "Menu.TrackingProtectionWhitelistRemove.Title" = "Gweredekaat evit al lec’hienn-mañ";
 
-/* The title for the option to view the What's new page. */
-"Menu.WhatsNew.Title" = "Petra nevez";
-
 /* Accessibility label for Mobile Device image in remote tabs list */
 "mobile device" = "trevnad hezoug";
 
@@ -1254,6 +1251,9 @@
 
 /* Description for the sync onboarding page in our Onboarding screens. The user will be able to setup their Firefox sync account from that screen. */
 "Onboarding.SyncDescription.v102" = "Goubredañ an ivinelloù hag ar sinedoù en un doare emgefreek war an holl benvegoù evit ul lamm-skramm flour.";
+
+/* Title for the sync onboarding page in our Onboarding screens. The user will be able to setup their Firefox sync account from that screen. 'Stay in the flow' means that a person is fully immersed in an activity. The user will sync with their Firefox sync account to stay connected and immersed in the activity they are doing. */
+"Onboarding.SyncTitle.v102" = "Goubredañ evit chom el lanv";
 
 /* Description for the wallpaper onboarding page in our Onboarding screens. This describes to the user that they can set a wallpaper. */
 "Onboarding.WallpaperAction.v102" = "Aozañ an drekleur";
@@ -1311,7 +1311,7 @@
 "Panel Chooser" = "Dibaber penel";
 
 /* Password textbox in Authentication prompt */
-"Password" = "Ger-tremen";
+"Password" = "Gerioù tremen";
 
 /* Error message shown in the remote tabs panel */
 "PasswordAutoFill.NoPasswordsFoundTitle" = "N’ho peus tamm titour kennaskañ ebet goubredet eus ho kont Firefox";
@@ -1630,9 +1630,6 @@
 
 /* Option choice in display theme settings for light theme */
 "Settings.DisplayTheme.OptionLight" = "Sklaer";
-
-/* Display (theme) settings footer describing how the brightness slider works. */
-"Settings.DisplayTheme.SectionFooter" = "An neuz a cheñcho en un doare emgefre e-keñver sked ho skramm. Gellout a rit termeniñ an treuzoù ma cheñcho an tem ganto. Ar c’helc’h a ziskouez sked a-vremañ ho skramm.";
 
 /* Switch mode settings section title */
 "Settings.DisplayTheme.SwitchMode.SectionHeader" = "Cheñch mod";
