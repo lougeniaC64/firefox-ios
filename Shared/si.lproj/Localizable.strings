@@ -935,7 +935,7 @@
 "Onboarding.Wallpaper.Accessibility.LimitedEdition.v106" = "සීමිත සංස්කරණ බිතුපත";
 
 /* Description for the wallpaper onboarding modal displayed on top of the homepage. This describes to the user that they can set a wallpaper. */
-"Onboarding.Wallpaper.Action.v106" = "තවත් බිතුපත් ගවේශණය";
+"Onboarding.Wallpaper.Action.v106" = "තවත් බිතුපත් ගවේශනය";
 
 /* Description for the wallpaper onboarding modal displayed on top of the homepage. This describes to the user that they can choose different wallpapers. */
 "Onboarding.Wallpaper.Description.v106" = "ඔබට කතා කරන බිතුපතක් තෝරන්න.";
@@ -1448,7 +1448,7 @@
 "Settings.NewTab.Option.BlankPage" = "හිස් පිටුව";
 
 /* Option in settings to show Firefox Home when you open a new tab */
-"Settings.NewTab.Option.FirefoxHome" = "ෆයර්ෆෝක්ස් මුල";
+"Settings.NewTab.Option.FirefoxHome" = "ෆයර්ෆොක්ස් මුල";
 
 /* Option in settings to show your homepage when you open a new tab */
 "Settings.NewTab.Option.HomePage" = "මුල් පිටුව";
@@ -1818,6 +1818,24 @@
 
 /* Username textbox in Authentication prompt */
 "Username" = "පරිශීලක නාමය";
+
+/* The message of the error displayed to a user when they trying to change a wallpaper failed. */
+"Wallpaper.Change.Error.Body.v106" = "මෙම බිතුපතෙහි යම් දෙයක් වැරදී ඇත.";
+
+/* The title of the error displayed when changing wallpaper fails. */
+"Wallpaper.Change.Error.Title.v106" = "බිතුපත වෙනස් කළ නොහැකි විය";
+
+/* The message of the error displayed to a user when they try change a wallpaper that failed downloading. */
+"Wallpaper.Download.Error.Body.v106" = "ඔබගේ බාගැනීමෙහි යමක් වැරදී ඇත.";
+
+/* The title of the error displayed if download fails when changing a wallpaper. */
+"Wallpaper.Download.Error.Title.v106" = "බිතුපත බාගැනීමට නොහැකි විය";
+
+/* An action for the error displayed to a user when they trying to change a wallpaper failed. */
+"Wallpaper.Error.Dismiss.v106" = "අවලංගු";
+
+/* Action displayed when changing wallpaper fails. */
+"Wallpaper.Error.TryAgain.v106" = "යළි උත්සාහය";
 
 /* Accessibility label for the main web content view */
 "Web content" = "වියමන අන්තර්ගතය";
