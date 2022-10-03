@@ -1390,9 +1390,6 @@
 /* In the settings menu, on the Firefox wallpaper customization screen, this is the title accessibility string for the twilight hills firefox wallpaper. */
 "Settings.Home.Option.Wallpaper.Accessibility.TwilightHillsWallpaper.v100" = "Tugna n ugilal n Firefox, taneɣruft n tewririn yilemẓen.";
 
-/* In the settings menu, on the Firefox wallpaper customization screen, this is the title of the group of wallpapers that are always available to the user. */
-"Settings.Home.Option.Wallpaper.Classic.Title.v106" = "Firefox aklasik";
-
 /* In the settings menu, on the Firefox wallpaper customization screen, this is the title of the section that allows users to change the wallpaper settings for the application. */
 "Settings.Home.Option.Wallpaper.CollectionTitle" = "AGDIL N ULDAY";
 
@@ -1830,6 +1827,24 @@
 
 /* Username textbox in Authentication prompt */
 "Username" = "Isem n useqdac";
+
+/* The message of the error displayed to a user when they trying to change a wallpaper failed. */
+"Wallpaper.Change.Error.Body.v106" = "Yella wayen ur nteddu ara d tugna-a n ugilal.";
+
+/* The title of the error displayed when changing wallpaper fails. */
+"Wallpaper.Change.Error.Title.v106" = "Tegguma ad tbeddel tugna n ugilal";
+
+/* The message of the error displayed to a user when they try change a wallpaper that failed downloading. */
+"Wallpaper.Download.Error.Body.v106" = "Yella wayen ur nteddu ara d usader-inek•inem.";
+
+/* The title of the error displayed if download fails when changing a wallpaper. */
+"Wallpaper.Download.Error.Title.v106" = "Yegguma ad d-tettusader tugna";
+
+/* An action for the error displayed to a user when they trying to change a wallpaper failed. */
+"Wallpaper.Error.Dismiss.v106" = "Sefsex";
+
+/* Action displayed when changing wallpaper fails. */
+"Wallpaper.Error.TryAgain.v106" = "Ɛreḍ tikkelt-nniḍen";
 
 /* Accessibility label for the main web content view */
 "Web content" = "Agbur Web";
