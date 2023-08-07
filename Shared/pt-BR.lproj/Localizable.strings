@@ -83,7 +83,7 @@
 "Back" = "Voltar";
 
 /* Block pop-up windows setting */
-"Block Pop-up Windows" = "Bloquear janelas pop-up";
+"Block Pop-up Windows" = "Bloquear abertura de janelas ou abas";
 
 /* The label for the Title field when editing a bookmark */
 "Bookmark.DetailFieldTitle.Label" = "Título";
