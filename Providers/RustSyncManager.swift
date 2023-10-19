@@ -339,24 +339,30 @@ public class RustSyncManager: NSObject, SyncManager {
                 rustEngines.append(engine.rawValue)
             case .passwords:
                 profile?.logins.registerWithSyncManager()
-                if let key = try? profile?.logins.getStoredKey() {
-                    localEncryptionKeys[engine.rawValue] = key
-                    rustEngines.append(engine.rawValue)
-                } else {
-                    logger.log("Login encryption key could not be retrieved for syncing",
-                               level: .warning,
-                               category: .sync)
+                profile?.logins.getStoredKey { result in
+                    switch result {
+                    case .success(let key):
+                        localEncryptionKeys[engine.rawValue] = key
+                        rustEngines.append(engine.rawValue)
+                    case .failure(let err):
+                        self.logger.log("Login encryption key could not be retrieved for syncing: \(err)",
+                                        level: .warning,
+                                        category: .sync)
+                    }
                 }
             case .creditcards:
                 if self.creditCardAutofillEnabled {
                     profile?.autofill.registerWithSyncManager()
-                    if let key = try? profile?.autofill.getStoredKey() {
-                        localEncryptionKeys[engine.rawValue] = key
-                        rustEngines.append(engine.rawValue)
-                    } else {
-                        logger.log("Credit card encryption key could not be retrieved for syncing",
-                                   level: .warning,
-                                   category: .sync)
+                    profile?.autofill.getStoredKey { result in
+                        switch result {
+                        case .success(let key):
+                            localEncryptionKeys[engine.rawValue] = key
+                            rustEngines.append(engine.rawValue)
+                        case .failure(let err):
+                            self.logger.log("Credit card encryption key could not be retrieved for syncing: \(err)",
+                                            level: .warning,
+                                            category: .sync)
+                        }
                     }
                 }
             case .bookmarks, .history:
