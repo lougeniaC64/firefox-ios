@@ -74,10 +74,10 @@
 "Settings.Search.PageTitle.v121" = "Iskanje";
 
 /* Label for toggle. Explains that in private browsing mode, the search suggestions which appears at the top of the search bar, can be toggled on or off. Located in the Private Session section in the Search page in the Settings menu. */
-"Settings.Search.PrivateSession.Setting.v121" = "Izklopi predloge v zasebnem brskanju";
+"Settings.Search.PrivateSession.Setting.v122" = "Prikazuj predloge v zasebnem brskanju";
 
 /* Title for the `Private Session` settings section in the Search page in the Settings menu. */
-"Settings.Search.PrivateSession.Title.v121" = "Zasebna seja";
+"Settings.Search.PrivateSession.Title.v122" = "Zasebno brskanje";
 
 /* Title for quick-search engines settings section in the Search page in the Settings menu. */
 "Settings.Search.QuickEnginesTitle.v121" = "Hitri iskalniki";
