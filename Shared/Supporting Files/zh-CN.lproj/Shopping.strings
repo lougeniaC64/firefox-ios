@@ -20,7 +20,7 @@
 "Shopping.AdjustedRating.Description.v120" = "已排除不可信的评价";
 
 /* Description adjusted of the rating card displayed in the shopping review quality bottom sheet. */
-"Shopping.AdjustedRating.Description.v121" = "基于可信评分调整";
+"Shopping.AdjustedRating.Description.v121" = "基于可信评价调整";
 
 /* Accessibility label, associated to adjusted rating stars. %@ is a decimal value from 0 to 5 that will only use a tenth (example: 3.5). */
 "Shopping.AdjustedRating.StarsAccessibilityLabel.v120" = "%@ 颗星（满分 5 星）";
@@ -127,6 +127,9 @@
 /* Text for the disclaimer that appears underneath the rating image of the Shopping Experience Opt In onboarding Card (Fakespot). The parameter will be replaced by the Fakespot app name. After the colon, what appears are two links, each on their own line. The first link is to a Privacy policy. The second link is to Terms of use. */
 "Shopping.OptInCard.Disclaimer.Text.v120" = "选择“试试看”，即代表您同意 %@ 的：";
 
+/* Label for the first paragraph of the Shopping Experience Opt In onboarding Card (Fakespot). The first parameter will be the website the user is coming from when viewing this screen (default Amazon). The second parameter will be replaced by the app name. This string is almost identical with 'Shopping.OptInCard.FirstParagraph.Description', but without Best Buy and Walmart websites, which are not available in many locales. */
+"Shopping.OptInCard.FirstParagraph.AmazonOnly.Description.v122" = "决定购买前，先看看 %1$@ 上的商品评价是否可信。核查评价是 %2$@ 的一项实验功能，内置于浏览器中。";
+
 /* Label for the first paragraph of the Shopping Experience Opt In onboarding Card (Fakespot). The first parameter will be the website the user is coming from when viewing this screen (default Amazon). The second parameter will be replaced by the app name. The third and fourth parameters will be the other two websites that are currently supported (Amazon, Best Buy or Walmart) besides the one used for the first parameter. */
 "Shopping.OptInCard.FirstParagraph.Description.v120" = "购买前看看 %1$@ 上产品评论的可靠性。核查评价是来自 %2$@ 的实验性功能，它直接内置在浏览器中，同样也适用于 %3$@ 和 %4$@。";
 
@@ -155,7 +158,7 @@
 "Shopping.ReliabilityScore.Grade.A11y.Label.v120" = "等级 %@";
 
 /* Title of the reliability card displayed in the shopping review quality bottom sheet. */
-"Shopping.ReviewQuality.ReliabilityCardTitle.v120" = "这些评论的可靠性如何？";
+"Shopping.ReviewQuality.ReliabilityCardTitle.v120" = "这些评价的可靠性如何？";
 
 /* Description of the reliability ratings for rating 'A' and 'B' displayed in the shopping review quality bottom sheet. */
 "Shopping.ReviewQuality.ReliabilityRating.AB.Description.v120" = "可信评价";

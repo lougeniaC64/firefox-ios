@@ -74,10 +74,10 @@
 "Settings.Search.PageTitle.v121" = "ਖੋਜ";
 
 /* Label for toggle. Explains that in private browsing mode, the search suggestions which appears at the top of the search bar, can be toggled on or off. Located in the Private Session section in the Search page in the Settings menu. */
-"Settings.Search.PrivateSession.Setting.v121" = "ਪ੍ਰਾਈਵੇਟ ਬਰਾਊਜ਼ਿੰਗ ਵਿੱਚ ਸੁਝਾਆਵਾਂ ਨੂੰ ਬੰਦ ਕਰੋ";
+"Settings.Search.PrivateSession.Setting.v122" = "ਪ੍ਰਾਈਵੇਟ ਬਰਾਊਜ਼ਿੰਗ ਵਿੱਚ ਸੁਝਾਅ ਵੇਖਾਓ";
 
 /* Title for the `Private Session` settings section in the Search page in the Settings menu. */
-"Settings.Search.PrivateSession.Title.v121" = "ਪ੍ਰਾਈਵੇਟ ਸ਼ੈਸ਼ਨ";
+"Settings.Search.PrivateSession.Title.v122" = "ਪ੍ਰਾਈਵੇਟ ਬਰਾਊਜ਼ਿੰਗ";
 
 /* Title for quick-search engines settings section in the Search page in the Settings menu. */
 "Settings.Search.QuickEnginesTitle.v121" = "ਫ਼ੌਰੀ-ਖੋਜ ਇੰਜਣ";

@@ -1,9 +1,9 @@
-/* The body of the message for the card that educates users about how private mode works. The card shows up on the homepage when in the new privacy mode. Placeholder refers to app name. */
-"FeltPrivacyUI.Body.v121" = "%@ poistaa evästeet, historian ja sivustotiedot, kun suljet kaikki yksityiset ikkunat.";
+/* When the user ends their private session, their are returned to the private mode homepage, and a toastbar popus confirming that their data has been erased. This is the label for that toast. */
+"FirefoxHomepage.FeltDeletion.Link.v122" = "Yksityiset selaustiedot poistettu";
 
-/* The link for the card that educates users about how private mode works. The link redirects to an external site for more information. The card shows up on the homepage when in the new privacy mode. */
-"FeltPrivacyUI.Link.v121" = "Kuka voi nähdä toimintani?";
+/* The body of the message for the card that educates users about how private mode works. The card shows up on the homepage when in the new privacy mode. Placeholder refers to app name. */
+"FirefoxHomepage.FeltPrivacyUI.Body.v122" = "%@ poistaa evästeet, historian ja sivustotiedot, kun suljet kaikki yksityiset välilehdet.";
 
 /* The title for the card that educates users about how private mode works. The card shows up on the homepage when in the new privacy mode. */
-"FeltPrivacyUI.Title.v121" = "Älä jätä jälkiä tähän laitteeseen";
+"FirefoxHomepage.FeltPrivacyUI.Title.v122" = "Älä jätä jälkiä tähän laitteeseen";
 
