@@ -108,11 +108,16 @@ public class RustAutofill {
                 return
             }
 
-            self.encryptCreditCard(creditCard: creditCard) { encCreditCard in
-                do {
-                    let id = try self.storage?.addCreditCard(cc: encCreditCard)
-                    completion(id!, nil)
-                } catch let err as NSError {
+            self.encryptCreditCard(creditCard: creditCard) { result in
+                switch result {
+                case .success(let encCreditCard):
+                    do {
+                        let id = try self.storage?.addCreditCard(cc: encCreditCard)
+                        completion(id!, nil)
+                    } catch let err as NSError {
+                        completion(nil, err)
+                    }
+                case .failure(let err):
                     completion(nil, err)
                 }
             }
@@ -208,7 +213,7 @@ public class RustAutofill {
     public func updateCreditCard(
         id: String,
         creditCard: UnencryptedCreditCardFields,
-        completion: @escaping (Bool, Error?) -> Void
+        completion: @escaping (Bool?, Error?) -> Void
     ) {
         performDatabaseOperation { error in
             guard error == nil else {
@@ -216,12 +221,17 @@ public class RustAutofill {
                 return
             }
 
-            self.encryptCreditCard(creditCard: creditCard) { encCreditCard in
-                do {
-                    try self.storage?.updateCreditCard(guid: id, cc: encCreditCard)
-                    completion(true, nil)
-                } catch let err as NSError {
-                    completion(false, err)
+            self.encryptCreditCard(creditCard: creditCard) { result in
+                switch result {
+                case .success(let encCreditCard):
+                    do {
+                        try self.storage?.updateCreditCard(guid: id, cc: encCreditCard)
+                        completion(true, nil)
+                    } catch let err as NSError {
+                        completion(nil, err)
+                    }
+                case .failure(let err):
+                    completion(nil, err)
                 }
             }
         }
@@ -528,31 +538,29 @@ public class RustAutofill {
     }
 
     private func encryptCreditCard(creditCard: UnencryptedCreditCardFields,
-                                   completion: @escaping (UpdatableCreditCardFields) -> Void) {
+                                   completion: @escaping (Result<UpdatableCreditCardFields, Error>) -> Void) {
         getStoredKey { result in
-            var ccNumberEnc = ""
-
             switch result {
             case .success(let key):
                 do {
-                    ccNumberEnc = try encryptString(key: key, cleartext: creditCard.ccNumber)
+                    let ccNumberEnc = try encryptString(key: key, cleartext: creditCard.ccNumber)
+                    let encCreditCard = UpdatableCreditCardFields(ccName: creditCard.ccName,
+                                                                  ccNumberEnc: ccNumberEnc,
+                                                                  ccNumberLast4: creditCard.ccNumberLast4,
+                                                                  ccExpMonth: creditCard.ccExpMonth,
+                                                                  ccExpYear: creditCard.ccExpYear,
+                                                                  ccType: creditCard.ccType)
+                    completion(.success(encCreditCard))
                 } catch let error as NSError {
                     self.logger.log("Error encrypting credit card number",
                                     level: .warning,
                                     category: .storage,
                                     description: error.localizedDescription)
+                    completion(.failure(error))
                 }
-            case .failure:
-                break
+            case .failure(let error):
+                completion(.failure(error))
             }
-
-            let encCreditCard = UpdatableCreditCardFields(ccName: creditCard.ccName,
-                                                          ccNumberEnc: ccNumberEnc,
-                                                          ccNumberLast4: creditCard.ccNumberLast4,
-                                                          ccExpMonth: creditCard.ccExpMonth,
-                                                          ccExpYear: creditCard.ccExpYear,
-                                                          ccType: creditCard.ccType)
-            completion(encCreditCard)
         }
     }
 }
