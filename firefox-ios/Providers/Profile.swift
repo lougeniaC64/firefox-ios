@@ -678,23 +678,44 @@ open class BrowserProfile: Profile {
 
         // Save the keys that will be restored
         let rustAutofillKey = RustAutofillEncryptionKeys()
-        let creditCardKey = keychain.string(forKey: rustAutofillKey.ccKeychainKey)
+        let creditCardKey = keychain.string(forKey: rustAutofillKey.ccKey)
+        let creditCardCanary = keychain.string(forKey: rustAutofillKey.ccCanaryPhraseKey)
+
         let rustLoginsKeys = RustLoginEncryptionKeys()
-        let perFieldKey = keychain.string(forKey: rustLoginsKeys.loginPerFieldKeychainKey)
+        let loginsKey = keychain.string(forKey: rustLoginsKeys.loginsKey)
+        let loginsCanary = keychain.string(forKey: rustLoginsKeys.canaryPhraseKey)
         // Remove all items, removal is not key-by-key specific (due to the risk of failing to delete something),
         // simply restore what is needed.
         keychain.removeAllKeys()
 
-        if let perFieldKey = perFieldKey {
+        if let loginsKey = loginsKey {
             keychain.set(
-                perFieldKey,
-                forKey: rustLoginsKeys.loginPerFieldKeychainKey,
+                loginsKey,
+                forKey: rustLoginsKeys.loginsKey,
+                withAccessibility: .afterFirstUnlock
+            )
+        }
+
+        if let loginsCanary = loginsCanary {
+            keychain.set(
+                loginsCanary,
+                forKey: rustLoginsKeys.canaryPhraseKey,
                 withAccessibility: .afterFirstUnlock
             )
         }
 
         if let creditCardKey = creditCardKey {
-            keychain.set(creditCardKey, forKey: rustAutofillKey.ccKeychainKey, withAccessibility: .afterFirstUnlock)
+            keychain.set(
+                creditCardKey,
+                forKey: rustAutofillKey.ccKey,
+                withAccessibility: .afterFirstUnlock)
+        }
+
+        if let creditCardCanary = creditCardCanary {
+            keychain.set(
+                creditCardCanary,
+                forKey: rustAutofillKey.ccCanaryPhraseKey,
+                withAccessibility: .afterFirstUnlock)
         }
 
         // Tell any observers that our account has changed.

@@ -385,10 +385,10 @@ public enum LoginEncryptionKeyError: Error {
 }
 
 public class RustLoginEncryptionKeys {
-    public let loginPerFieldKeychainKey = "appservices.key.logins.perfield"
+    public let loginsKey = "appservices.key.logins.perfield"
+    public let canaryPhraseKey = "canaryPhrase"
 
     let keychain = MZKeychainWrapper.sharedClientAppContainerKeychain
-    let canaryPhraseKey = "canaryPhrase"
     let canaryPhrase = "a string for checking validity of the key"
 
     private let logger: Logger
@@ -404,7 +404,7 @@ public class RustLoginEncryptionKeys {
 
             DispatchQueue.global(qos: .background).sync {
                 self.keychain.set(secret,
-                                  forKey: self.loginPerFieldKeychainKey,
+                                  forKey: self.loginsKey,
                                   withAccessibility: MZKeychainItemAccessibility.afterFirstUnlock)
                 self.keychain.set(canary,
                                   forKey: self.canaryPhraseKey,
@@ -431,7 +431,7 @@ public class RustLoginEncryptionKeys {
     }
 
     public func decryptSecureFields(login: EncryptedLogin) -> Login? {
-        guard let key = self.keychain.string(forKey: self.loginPerFieldKeychainKey) else {
+        guard let key = self.keychain.string(forKey: self.loginsKey) else {
             return nil
         }
 
@@ -457,7 +457,7 @@ public class RustLoginEncryptionKeys {
         login: Login,
         encryptionKey: String? = nil
     ) -> EncryptedLogin? {
-        guard let key = self.keychain.string(forKey: self.loginPerFieldKeychainKey) else {
+        guard let key = self.keychain.string(forKey: self.loginsKey) else {
             return nil
         }
 
@@ -1058,7 +1058,7 @@ public class RustLogins: LoginsProtocol {
 
     private func getKeychainData(rustKeys: RustLoginEncryptionKeys, completion: @escaping (String?, String?) -> Void) {
         DispatchQueue.global(qos: .background).sync {
-            let key = rustKeys.keychain.string(forKey: rustKeys.loginPerFieldKeychainKey)
+            let key = rustKeys.keychain.string(forKey: rustKeys.loginsKey)
             let encryptedCanaryPhrase = rustKeys.keychain.string(forKey: rustKeys.canaryPhraseKey)
             completion(key, encryptedCanaryPhrase)
         }

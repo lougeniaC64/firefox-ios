@@ -25,10 +25,10 @@ public extension AutofillApiError {
 }
 
 public class RustAutofillEncryptionKeys {
-    public let ccKeychainKey = "appservices.key.creditcard.perfield"
+    public let ccKey = "appservices.key.creditcard.perfield"
+    public let ccCanaryPhraseKey = "creditCardCanaryPhrase"
 
     let keychain = MZKeychainWrapper.sharedClientAppContainerKeychain
-    let ccCanaryPhraseKey = "creditCardCanaryPhrase"
     let canaryPhrase = "a string for checking validity of the key"
 
     private let logger: Logger
@@ -44,7 +44,7 @@ public class RustAutofillEncryptionKeys {
 
             DispatchQueue.global(qos: .background).sync {
                 keychain.set(secret,
-                             forKey: ccKeychainKey,
+                             forKey: ccKey,
                              withAccessibility: MZKeychainItemAccessibility.afterFirstUnlock)
                 keychain.set(canary,
                              forKey: ccCanaryPhraseKey,
@@ -71,7 +71,7 @@ public class RustAutofillEncryptionKeys {
     }
 
     func decryptCreditCardNum(encryptedCCNum: String) -> String? {
-        guard let key = self.keychain.string(forKey: self.ccKeychainKey) else { return nil }
+        guard let key = self.keychain.string(forKey: self.ccKey) else { return nil }
 
         do {
             return try decryptString(key: key, ciphertext: encryptedCCNum)

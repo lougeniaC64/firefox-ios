@@ -551,7 +551,7 @@ public class RustAutofill {
     private func getKeychainData(rustKeys: RustAutofillEncryptionKeys,
                                  completion: @escaping (String?, String?) -> Void) {
         DispatchQueue.global(qos: .background).sync {
-            let key = rustKeys.keychain.string(forKey: rustKeys.ccKeychainKey)
+            let key = rustKeys.keychain.string(forKey: rustKeys.ccKey)
             let encryptedCanaryPhrase = rustKeys.keychain.string(forKey: rustKeys.ccCanaryPhraseKey)
             completion(key, encryptedCanaryPhrase)
         }
