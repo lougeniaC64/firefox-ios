@@ -136,6 +136,9 @@ final class NimbusFeatureFlagLayer {
         case .trackingProtectionRefactor:
             return checkTrackingProtectionRefactor(from: nimbus)
 
+        case .useRustKeychain:
+            return checkUseRustKeychainFeature(from: nimbus)
+
         case .zoomFeature:
             return checkZoomFeature(from: nimbus)
         }
@@ -418,5 +421,9 @@ final class NimbusFeatureFlagLayer {
 
     private func checkNICErrorPageFeature(from nimbus: FxNimbus) -> Bool {
         return nimbus.features.nativeErrorPageFeature.value().noInternetConnectionError
+    }
+
+    private func checkUseRustKeychainFeature(from nimbus: FxNimbus) -> Bool {
+        return nimbus.features.rustKeychainRefactor.value().rustKeychainEnabled
     }
 }
