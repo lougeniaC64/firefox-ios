@@ -5,12 +5,11 @@
 import Common
 import Shared
 
-import class MozillaAppServices.MZKeychainWrapper
 import enum MozillaAppServices.AutofillApiError
-import enum MozillaAppServices.MZKeychainItemAccessibility
 import func MozillaAppServices.checkCanary
 import func MozillaAppServices.createCanary
 import func MozillaAppServices.createKey
+import func MozillaAppServices.decryptString
 
 public enum LoginEncryptionKeyError: Error {
     case noKeyCreated
@@ -27,12 +26,6 @@ public class KeychainManager {
             ? MockRustKeychain.shared
             : RustKeychain.sharedClientAppContainerKeychain
     }()
-
-    public static var legacyShared = {
-        AppConstants.isRunningTest
-            ? MockMZKeychainWrapper.shared
-            : MZKeychainWrapper.sharedClientAppContainerKeychain
-    }()
 }
 
 open class RustKeychain {
@@ -43,7 +36,7 @@ open class RustKeychain {
 
     public let loginsKeyIdentifier = "appservices.key.logins.perfield"
     public let loginsCanaryKeyIdentifier = "canaryPhrase"
-    let loginsCanaryPhrase = "a string for checking validity of the key"
+    public let loginsCanaryPhrase = "a string for checking validity of the key"
 
     public let creditCardKeyIdentifier = "appservices.key.creditcard.perfield"
     public let creditCardCanaryKeyIdentifier = "creditCardCanaryPhrase"
@@ -205,6 +198,34 @@ open class RustKeychain {
              addOrUpdateKeychainKey(canaryValue, key: canaryIdentifier)
          }
          return keyValue
+    }
+
+    func checkCreditCardsCanary(canary: String, key: String) throws -> Bool {
+        return try decryptString(key: key, ciphertext: canary) == creditCardCanaryPhrase
+    }
+
+    func decryptCreditCardNum(encryptedCCNum: String) -> String? {
+        var keyValue: String?
+
+        (keyValue, _) = getCreditCardKeyData()
+
+        guard let key = keyValue else { return nil }
+
+        do {
+            return try decryptString(key: key, ciphertext: encryptedCCNum)
+        } catch let err as NSError {
+            if let autofillStoreError = err as? AutofillApiError {
+                logAutofillStoreError(err: autofillStoreError,
+                                      errorDomain: err.domain,
+                                      errorMessage: "Error while decrypting credit card")
+            } else {
+                logger.log("Unknown error while decrypting credit card",
+                           level: .warning,
+                           category: .storage,
+                           description: err.localizedDescription)
+            }
+            return nil
+        }
     }
 
     private class func deleteKeychainSecClass(_ secClass: AnyObject) {

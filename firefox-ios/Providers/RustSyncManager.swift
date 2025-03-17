@@ -9,7 +9,6 @@ import Sync
 import AuthenticationServices
 import Common
 
-import class MozillaAppServices.MZKeychainWrapper
 import enum MozillaAppServices.OAuthScope
 import enum MozillaAppServices.SyncEngineSelection
 import enum MozillaAppServices.SyncReason
@@ -36,7 +35,6 @@ public class RustSyncManager: NSObject, SyncManager {
     private let fxaDeclinedEngines = "fxa.cwts.declinedSyncEngines"
     private var notificationCenter: NotificationProtocol
     var creditCardAutofillEnabled = false
-    var rustKeychainEnabled = false
 
     let fifteenMinutesInterval = TimeInterval(60 * 15)
 
@@ -69,7 +67,6 @@ public class RustSyncManager: NSObject, SyncManager {
 
     init(profile: BrowserProfile,
          creditCardAutofillEnabled: Bool = false,
-         rustKeychainEnabled: Bool = false,
          logger: Logger = DefaultLogger.shared,
          notificationCenter: NotificationProtocol = NotificationCenter.default) {
         self.profile = profile
@@ -79,7 +76,6 @@ public class RustSyncManager: NSObject, SyncManager {
 
         super.init()
         self.creditCardAutofillEnabled = creditCardAutofillEnabled
-        self.rustKeychainEnabled = rustKeychainEnabled
     }
 
     @objc
@@ -276,15 +272,9 @@ public class RustSyncManager: NSObject, SyncManager {
                     .prefsForSync
                     .branch("scratchpad")
                     .stringForKey("keyLabel") {
-                        if self.rustKeychainEnabled {
-                            RustKeychain
-                                .sharedClientAppContainerKeychain
-                                .removeObject(key: keyLabel)
-                        } else {
-                            MZKeychainWrapper
-                                .sharedClientAppContainerKeychain
-                                .removeObject(forKey: keyLabel)
-                        }
+                        RustKeychain
+                            .sharedClientAppContainerKeychain
+                            .removeObject(key: keyLabel)
                 }
                 self.prefsForSync.clearAll()
             }
