@@ -31,6 +31,7 @@ include:
   - nimbus-features/menuRefactorFeature.yaml
   - nimbus-features/messagingFeature.yaml
   - nimbus-features/microsurveyFeature.yaml
+  - nimbus-features/loginsVerificationEnabled.yaml
   - nimbus-features/nativeErrorPageFeature.yaml
   - nimbus-features/newAppearanceMenu.yaml
   - nimbus-features/nightModeFeature.yaml

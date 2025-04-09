@@ -398,6 +398,37 @@ public class RustLogins: LoginsProtocol, KeyManager {
         return error
     }
 
+    public func verifyLogins(completionHandler: @escaping (Bool) -> Void) {
+        queue.async {
+            guard self.isOpen else {
+                self.logger.log("Logins verification failed as database is closed",
+                                level: .warning,
+                                category: .storage)
+                completionHandler(false)
+                return
+            }
+
+            self.getStoredKey { result in
+                switch result {
+                case .success:
+                    do {
+                        try self.storage?.deleteUndecryptableRecordsForRemoteReplacement()
+                        completionHandler(true)
+                    } catch let err as NSError {
+                        self.logger.log("Error verifying logins",
+                                        level: .warning,
+                                        category: .storage,
+                                        description: err.localizedDescription)
+                        completionHandler(false)
+                    }
+                case .failure:
+                    completionHandler(false)
+                }
+                completionHandler(true)
+            }
+        }
+    }
+
     public func getLogin(id: String, completionHandler: @escaping (Result<Login?, Error>) -> Void) {
         queue.async {
             guard self.isOpen else {
