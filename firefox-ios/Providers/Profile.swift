@@ -39,6 +39,8 @@ public protocol SyncManager {
     func syncTabs() -> Deferred<Maybe<SyncResult>>
     func syncHistory() -> Deferred<Maybe<SyncResult>>
     func syncNamedCollections(why: SyncReason, names: [String]) -> Success
+    func syncPostSyncSettings(why: SyncReason, names: [String])
+    func reportOpenSyncSettingsMenuTelemetry()
     @discardableResult
     func syncEverything(why: SyncReason) -> Success
 
