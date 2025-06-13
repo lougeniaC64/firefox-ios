@@ -11,6 +11,7 @@ import Common
 
 import class MozillaAppServices.MZKeychainWrapper
 import enum MozillaAppServices.OAuthScope
+import enum MozillaAppServices.ServiceStatus
 import enum MozillaAppServices.SyncEngineSelection
 import enum MozillaAppServices.SyncReason
 import struct MozillaAppServices.DeviceSettings
@@ -39,6 +40,8 @@ public class RustSyncManager: NSObject, SyncManager {
     private let logger: Logger
     private let fxaDeclinedEngines = "fxa.cwts.declinedSyncEngines"
     private var notificationCenter: NotificationProtocol
+    private var syncBackOffTimer: Timer?
+    private let syncBackOffDelay = 180.0 // 3 Minutes
     var rustKeychainEnabled = false
     var loginsVerificationEnabled = false
 
@@ -638,6 +641,85 @@ public class RustSyncManager: NSObject, SyncManager {
         }
 
         return syncRustEngines(why: why, engines: engines) >>> succeed
+    }
+
+    /**
+     * A specialized version of `syncNamedCollections` for execution after a sync settings change. Allows selective
+     * sync of different collections and retries the sync if the initial call is backed off.
+     */
+    public func syncPostSyncSettings(why: SyncReason, names: [String]) {
+        let settings = getsyncSettingsForTelemetry()
+        let enabledEngines = settings["enabledEngines"] ?? [String]()
+        let disabledEngines = settings["disabledEngines"] ?? [String]()
+        var engines = [String]()
+
+        // report sync settings telemetry changes
+        self.syncManagerAPI.reportSaveSyncSettingsTelemetry(enabledEngines: enabledEngines,
+                                                            disabledEngines: disabledEngines)
+
+        // There may be duplicates in `names` so we are removing them here
+        for name in names where !engines.contains(name) {
+            engines.append(name)
+        }
+
+        syncRustEngines(why: why, engines: engines).upon { result in
+            guard result.isSuccess, let syncResult = result.successValue else {
+                return
+            }
+
+            // If the sync was backed off, retry it after a delay.
+            if syncResult.status == .backedOff {
+                self.retrySyncAfterDelay(why: why, engines: engines)
+            }
+        }
+    }
+
+    public func reportOpenSyncSettingsMenuTelemetry() {
+        self.syncManagerAPI.reportOpenSyncSettingsMenuTelemetry()
+    }
+
+    private func retrySyncAfterDelay(why: SyncReason, engines: [String]) {
+        // If the timer property is set and is valid, we reset it. This will prevent the sync
+        // from being executed too often. It will run `self.syncBackOffDelay` seconds
+        // after the previous sync.
+        if self.syncBackOffTimer != nil && self.syncBackOffTimer?.isValid ?? false {
+            self.syncBackOffTimer?.invalidate()
+            self.syncBackOffTimer = nil
+        }
+
+        self.syncBackOffTimer = Timer.scheduledTimer(withTimeInterval: self.syncBackOffDelay,
+                                                     repeats: false) { _ in
+            _ = self.syncRustEngines(why: why, engines: engines)
+        }
+    }
+
+    private func getsyncSettingsForTelemetry() -> [String: [String]] {
+        var settings = ["enabledEngines": [String](), "disabledEngines": [String]()]
+        let engines = syncManagerAPI.rustTogglableEngines
+
+        // We just created the account, the user went through the Choose What to Sync
+        // screen on FxA.
+        if let declined = UserDefaults.standard.stringArray(forKey: fxaDeclinedEngines) {
+            engines.forEach {
+                if declined.contains($0.rawValue) {
+                    settings["disabledEngines"]?.append($0.rawValue)
+                }
+            }
+        } else {
+            engines.forEach { engine in
+                let stateChangedPref = "engine.\(engine).enabledStateChanged"
+                if prefsForSync.boolForKey(stateChangedPref) != nil,
+                   let isEnabled = prefsForSync.boolForKey("engine.\(engine).enabled") {
+                    if isEnabled {
+                        settings["enabledEngines"]?.append(engine.rawValue)
+                    } else {
+                        settings["disabledEngines"]?.append(engine.rawValue)
+                    }
+                }
+            }
+        }
+
+        return settings
     }
 
     public func syncTabs() -> Deferred<Maybe<SyncResult>> {

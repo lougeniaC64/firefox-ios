@@ -40,6 +40,11 @@ open class ClientSyncManagerSpy: ClientSyncManager {
         syncNamedCollectionsCalled += 1
         return succeed()
     }
+    var syncPostSyncSettingsCalled = 0
+    open func syncPostSyncSettings(why: SyncReason, names: [String]) {
+        syncPostSyncSettingsCalled += 1
+    }
+    open syncPostSyncSettings() {}
     open func beginTimedSyncs() {}
     open func endTimedSyncs() {}
     open func applicationDidBecomeActive() {
